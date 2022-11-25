@@ -21,7 +21,6 @@ function fetchData(id){
     .then((data)=>{
         pintarCards(data);
     });
-    pintarCards(data)
 }
 
 function fetchPersonajes(number){
@@ -36,9 +35,10 @@ const pintarCards= data=>{
     templateProductos.querySelector('span').textContent="100";
     templateProductos.querySelector('img').setAttribute("src",data.image);
     templateProductos.querySelector('button').dataset.id=data.id;
-    const clone=templateProductos.cloneNode(true)
-    fragment.appendChild(clone)
-productos.appendChild(fragment)
+    if(data.id!=undefined){
+        const clone=templateProductos.cloneNode(true);
+        fragment.appendChild(clone);
+        productos.appendChild(fragment);}   
 }
 
 const agregarCarrito=e=>{
