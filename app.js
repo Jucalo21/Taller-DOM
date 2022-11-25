@@ -5,7 +5,7 @@ const fragment=document.createDocumentFragment()
 const templateProductos= document.getElementById("template-productos").content
 const templateItems= document.getElementById("template-items").content
 const templateFooter= document.getElementById("template-footer").content
-
+const personajesContainer = document.querySelector('personajes-container')
 
 let carrito={}
 
@@ -14,22 +14,28 @@ productos.addEventListener('click',e=>{agregarCarrito(e)})
 
 items.addEventListener('click', e=>{btnAgregarEliminarProductos(e)})
 
-const fetchData= async()=>{
-    const res=await fetch('api.json')
-    const data =await res.json()
-    pintarCards(data);
+fetchPersonajes(9);
+function fetchData(id){
+    fetch(`https://rickandmortyapi.com/api/character/${id}`)
+    .then((res)=>res.json())
+    .then((data)=>console.log(data));
+    /* pintarCards(data) */
+}
+
+function fetchPersonajes(number){
+    for(let i=1;i<=number;i++){
+        fetchData(i);
+    }
 }
 
 const pintarCards= data=>{
-    
-    data.forEach(item=>{
+
         templateProductos.querySelector('h5').textContent=item.titulo;
         templateProductos.querySelector('span').textContent=item.precio;
         templateProductos.querySelector('img').setAttribute("src",item.imagen);
         templateProductos.querySelector('button').dataset.id=item.id;
         const clone=templateProductos.cloneNode(true)
         fragment.appendChild(clone)
-    })
     productos.appendChild(fragment)
 }
 
