@@ -18,8 +18,10 @@ fetchPersonajes(9);
 function fetchData(id){
     fetch(`https://rickandmortyapi.com/api/character/${id}`)
     .then((res)=>res.json())
-    .then((data)=>console.log(data));
-    /* pintarCards(data) */
+    .then((data)=>{
+        pintarCards(data);
+    });
+    pintarCards(data)
 }
 
 function fetchPersonajes(number){
@@ -30,13 +32,13 @@ function fetchPersonajes(number){
 
 const pintarCards= data=>{
 
-        templateProductos.querySelector('h5').textContent=item.titulo;
-        templateProductos.querySelector('span').textContent=item.precio;
-        templateProductos.querySelector('img').setAttribute("src",item.imagen);
-        templateProductos.querySelector('button').dataset.id=item.id;
-        const clone=templateProductos.cloneNode(true)
-        fragment.appendChild(clone)
-    productos.appendChild(fragment)
+    templateProductos.querySelector('h5').textContent=data.name;
+    templateProductos.querySelector('span').textContent="100";
+    templateProductos.querySelector('img').setAttribute("src",data.image);
+    templateProductos.querySelector('button').dataset.id=data.id;
+    const clone=templateProductos.cloneNode(true)
+    fragment.appendChild(clone)
+productos.appendChild(fragment)
 }
 
 const agregarCarrito=e=>{
