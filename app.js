@@ -20,8 +20,9 @@ items.addEventListener('click', e=>{btnAgregarEliminarProductos(e)})
 obtenerId.addEventListener('click', ()=>{
     event.preventDefault();
     const id=document.getElementById('valorId');
+    fetchData(id.value) 
     console.log(id.value)
-    fetchData(id.value)
+    
 })
 
 function fetchData(id){
