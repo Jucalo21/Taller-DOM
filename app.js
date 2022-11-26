@@ -5,7 +5,7 @@ const fragment=document.createDocumentFragment()
 const templateProductos= document.getElementById("template-productos").content
 const templateItems= document.getElementById("template-items").content
 const templateFooter= document.getElementById("template-footer").content
-const personajesContainer = document.querySelector('personajes-container')
+const obtenerId=document.getElementById('ingresarid')
 
 let carrito={}
 
@@ -14,19 +14,19 @@ productos.addEventListener('click',e=>{agregarCarrito(e)})
 
 items.addEventListener('click', e=>{btnAgregarEliminarProductos(e)})
 
-fetchPersonajes(9);
+obtenerId.addEventListener('click', ()=>{
+    event.preventDefault();
+    const id=document.getElementById('valorId');
+    console.log(id.value)
+    fetchData(id.value)
+})
+
 function fetchData(id){
     fetch(`https://rickandmortyapi.com/api/character/${id}`)
     .then((res)=>res.json())
     .then((data)=>{
         pintarCards(data);
     });
-}
-
-function fetchPersonajes(number){
-    for(let i=1;i<=number;i++){
-        fetchData(i);
-    }
 }
 
 const pintarCards= data=>{
