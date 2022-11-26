@@ -7,7 +7,9 @@ const templateItems= document.getElementById("template-items").content
 const templateFooter= document.getElementById("template-footer").content
 const obtenerId=document.getElementById('ingresarid')
 const precio=document.getElementById('precio')
+const nombre=document.getElementById('nombre')
 
+console.log(precio.value)
 let carrito={}
 
 document.addEventListener('DOMContentLoaded', e=>{fetchData()})
@@ -32,8 +34,16 @@ function fetchData(id){
 
 const pintarCards= data=>{
 
-    templateProductos.querySelector('h5').textContent=data.name;
-    templateProductos.querySelector('span').textContent=precio.value;
+    if (nombre.value!=''){
+        templateProductos.querySelector('h5').textContent=nombre.value;
+    }else{
+        templateProductos.querySelector('h5').textContent=data.name;
+    }
+    if(precio.value!=''){
+        templateProductos.querySelector('span').textContent=precio.value;
+    }else{
+        templateProductos.querySelector('span').textContent="1000";
+    }
     templateProductos.querySelector('img').setAttribute("src",data.image);
     templateProductos.querySelector('button').dataset.id=data.id;
     if(data.id!=undefined){
