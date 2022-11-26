@@ -6,6 +6,7 @@ const templateProductos= document.getElementById("template-productos").content
 const templateItems= document.getElementById("template-items").content
 const templateFooter= document.getElementById("template-footer").content
 const obtenerId=document.getElementById('ingresarid')
+const precio=document.getElementById('precio')
 
 let carrito={}
 
@@ -32,7 +33,7 @@ function fetchData(id){
 const pintarCards= data=>{
 
     templateProductos.querySelector('h5').textContent=data.name;
-    templateProductos.querySelector('span').textContent="100";
+    templateProductos.querySelector('span').textContent=precio.value;
     templateProductos.querySelector('img').setAttribute("src",data.image);
     templateProductos.querySelector('button').dataset.id=data.id;
     if(data.id!=undefined){
